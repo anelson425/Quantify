@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def index
     redirect_to @oauth_client.auth_code.authorize_url(:redirect_uri => REDIRECT_URL)
-
+    
     RunningClubMailer.run_log_email.deliver
   end
 
