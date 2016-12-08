@@ -8,7 +8,9 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'haml', '~> 4.0'
 gem 'haml-rails', '~> 0.9.0'
+gem 'hamlbars', '~> 2.0'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

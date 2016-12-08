@@ -61,6 +61,11 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    hamlbars (2.0.1)
+      execjs (>= 1.2)
+      haml
+      sprockets
+      tilt
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -156,7 +161,9 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.1.0)
+  haml (~> 4.0)
   haml-rails (~> 0.9.0)
+  hamlbars (~> 2.0)
   jbuilder (~> 2.0)
   rails (= 4.2.7.1)
   sass-rails (~> 5.0)
