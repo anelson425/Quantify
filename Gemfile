@@ -11,6 +11,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml', '~> 4.0'
 gem 'haml-rails', '~> 0.9.0'
 gem 'hamlbars', '~> 2.0'
+gem 'pry'
+gem 'strava-api-v3'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
