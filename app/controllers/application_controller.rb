@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
     redirect_to client.auth_code.authorize_url(:redirect_uri => 'http://quantify.ddns.net/callback')
 
     # token = client.auth_code.get_token('authorization_code_value', :redirect_uri => 'http://localhost:8080/oauth2/callback', :headers => {'Authorization' => 'Basic some_password'})
-
-     puts 'got ourselves a token'
+    RunningClubMailer.run_log_email.deliver
+    puts 'got ourselves a token'
   end
 
   def callback
