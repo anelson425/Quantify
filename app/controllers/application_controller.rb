@@ -19,24 +19,18 @@ class ApplicationController < ActionController::Base
     logger.debug("in mileage")
     oauth_token = @oauth_client.auth_code.get_token(params[:code], :redirect_uri => REDIRECT_URL).token
     @client = Strava::Api::V3::Client.new(:access_token => oauth_token)
-    #Start from the beggining of the year till the day you login to the application
-    @strava_activities = []
-    @strava_activities_page = @client.list_athlete_activities({:after => Time.gm(Time.now.year, 'jan', '1').to_i})
-    while true
-      @strava_activities += @strava_activities_page
-      @strava_activities_page = @client.list_athlete_activities({:after => Time.parse(@strava_activities_page.last['start_date_local']).gmtime.to_i})
-      if @strava_activities_page.empty?
-        break
-      end
-    end
-
+    args = {"after" => Time.gm(Time.now.year, 'dec', '1').to_i}
+    @strava_activities = @client.list_athlete_activities(args)
     @activities = []
     total_miles = 0
     @strava_activities.each do |activity|
       if activity['type'].eql? 'Run'
         distance = (activity['distance'].to_f * (0.000621371)).round(2)
         total_miles += distance
+        puts distance
+        puts total_miles
         @activities << Activity.new(date: activity['start_date_local'], distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60).round(2), total_distance_mi: total_miles)
+        logger.debug(@activities)
       end
     end
   end
