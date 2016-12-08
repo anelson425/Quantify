@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def mileage
-    oauth_token = @oauth_client.auth_code.get_token(code, :redirect_uri => REDIRECT_URL).token
+    oauth_token = @oauth_client.auth_code.get_token(params[:code], :redirect_uri => REDIRECT_URL).token
     @client = Strava::Api::V3::Client.new(:access_token => oauth_token)
     args = {"after" => Time.gm(Time.now.year, 'dec', '1').to_i}
     @strava_activities = @client.list_athlete_activities(args)
