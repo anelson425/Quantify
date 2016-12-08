@@ -1,0 +1,2 @@
+class RunningClubMailer < ApplicationMailer
+end
