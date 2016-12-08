@@ -1,5 +1,5 @@
 # Quantify
-
+http://quantify.ddns.net
 ## Deployment
 Running on ec-2 ubuntu instance: http://ec2-35-165-239-199.us-west-2.compute.amazonaws.com/
 
