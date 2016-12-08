@@ -5,9 +5,10 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  @oauth_client = OAuth2::Client.new('15075', 'e251bd49ab45ec2ba2fcd1e269453910afcbd200', :site => 'https://www.strava.com/oauth/authorize')
   REDIRECT_URL = "http://quantify.ddns.net/mileage".freeze
-  
+
+  before_action :initialize_oauth_client
+
   def index
     redirect_to @oauth_client.auth_code.authorize_url(:redirect_uri => REDIRECT_URL)
 
@@ -30,5 +31,9 @@ class ApplicationController < ActionController::Base
         @activities << Activity.new(date: activity['start_date_local'], distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60).round(2), total_distance_mi: total_miles)
       end
     end
+  end
+
+  def initialize_oauth_client
+    @oauth_client = OAuth2::Client.new('15075', 'e251bd49ab45ec2ba2fcd1e269453910afcbd200', :site => 'https://www.strava.com/oauth/authorize')
   end
 end
