@@ -5,4 +5,9 @@
       %th{"data-field" => "name"} Distance
       %th{"data-field" => "price"} Time
   %tbody
-    = create_table(@activities)
+    = @activities.each |activity| do
+      %tr
+        %td activity.date
+        %td activity.distance_mi
+        %td activity.time_min
+        %td activity.total_distance_mi
