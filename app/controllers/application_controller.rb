@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
 
   def mileage
     logger.debug("in mileage")
-    logger.debug(params[:code])
     oauth_token = @oauth_client.auth_code.get_token(params[:code], :redirect_uri => REDIRECT_URL).token
     @client = Strava::Api::V3::Client.new(:access_token => oauth_token)
     args = {"after" => Time.gm(Time.now.year, 'dec', '1').to_i}
@@ -31,6 +30,7 @@ class ApplicationController < ActionController::Base
         puts distance
         puts total_miles
         @activities << Activity.new(date: activity['start_date_local'], distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60).round(2), total_distance_mi: total_miles)
+        logger.debug(@activities)
       end
     end
   end
