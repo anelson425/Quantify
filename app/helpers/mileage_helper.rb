@@ -13,5 +13,6 @@ module MileageHelper
         content_tag(:td, activity.total_distance_mi)
       end
     end
+    table_rows
   end
 end
