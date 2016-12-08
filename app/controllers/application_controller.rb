@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
 
   def callback
     logger.debug("callback called")
-    logger.debug(params)
+    logger.debug(params.inspect)
   end
 end
