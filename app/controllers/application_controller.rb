@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     # the auth token is in the 'code' parameter
     code = params[:code]
     client = OAuth2::Client.new('15075', 'e251bd49ab45ec2ba2fcd1e269453910afcbd200', :site => 'https://www.strava.com/oauth/authorize')
-    token = client.auth_code.get_token('code_value', :redirect_uri => 'http://quantify.ddns.net/callback')
+    token = client.auth_code.get_token(code, :redirect_uri => 'http://quantify.ddns.net/callback')
     logger.debug("got a token")
     logger.debug(token)
   end
