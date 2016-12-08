@@ -12,7 +12,8 @@ gem 'haml', '~> 4.0'
 gem 'haml-rails', '~> 0.9.0'
 gem 'hamlbars', '~> 2.0'
 gem 'pry'
-gem 'strava-api-v3'
+gem 'strava-api-v3', '0.6.0'
+gem 'oauth2'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
