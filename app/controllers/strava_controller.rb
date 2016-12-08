@@ -3,7 +3,7 @@ class StravaController < ApplicationController
   def index
     #Todo find a way to use better oauth and not hardcode people's token blindly.(ugh!!)
     @client = Strava::Api::V3::Client.new(:access_token => '1b375a9f5a846cee6277e65974b116c809c3c6c4')
-    args = {"after" => Time.gm(Time.now.year, 'sep', '1').to_i}
+    args = {"after" => Time.gm(Time.now.year, 'jan', '1').to_i}
     @strava_activities = @client.list_athlete_activities(args)
     @activities = []
     total_miles = 0
