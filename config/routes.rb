@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   root to: 'application#index'
-  get '/callback' => 'application#callback'
+  get '/mileage' => 'application#mileage'
 end
