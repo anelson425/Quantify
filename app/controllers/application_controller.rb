@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  REDIRECT_URL = "http://quantify.ddns.net/mileage".freeze
+  REDIRECT_URL = "http://localhost:3000/mileage".freeze
 
   before_action :initialize_oauth_client
 
@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
     strava_activities.each do |activity|
       distance = (activity['distance'].to_f * (0.000621371)).round(2)
       total_miles += distance
-      @activities << Activity.new(date: activity['start_date_local'], distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60), total_distance_mi: total_miles.round(2))
+      @activities << Activity.new(date: DateTime.iso8601(activity['start_date_local']).strftime("%F %T"), distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60), total_distance_mi: total_miles.round(2))
     end
   end
 
