@@ -22,13 +22,12 @@ class ApplicationController < ActionController::Base
     #Start from the beginning of the year till the day you login to the application
     strava_activities = []
     page = 1
-    args = {:per_page => 200, :page => page}
 
-    strava_activities_page = @client.list_athlete_activities(args)
+    strava_activities_page = @client.list_athlete_activities({per_page: 200, page: page})
     until strava_activities_page.size == 0
       strava_activities.concat(strava_activities_page)
       page += 1
-      strava_activities_page = @client.list_athlete_activities(args)
+      strava_activities_page = @client.list_athlete_activities({per_page: 200, page: page})
     end
 
     @activities = []
