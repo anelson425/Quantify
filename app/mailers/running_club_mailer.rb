@@ -1,3 +1,4 @@
+require 'pry'
 class RunningClubMailer < ApplicationMailer
   default from: 'cerner.quantify@gmail.com'
 
@@ -9,6 +10,7 @@ class RunningClubMailer < ApplicationMailer
       b = JSON.load a
       @activities = @activities << b
     end
-    mail(to: 'venkatesh.sridharan@cerner.com', subject: "#{athlete['firstname']} #{athlete['lastname']} - Tracking Card Submission")
+    binding.pry
+    mail(to: 'ian.kottman@cerner.com', subject: "#{athlete['firstname']} #{athlete['lastname']} - Tracking Card Submission")
   end
 end
