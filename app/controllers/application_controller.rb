@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   REDIRECT_URL = "http://localhost:3000/mileage".freeze
 
-
   before_action :initialize_oauth_client
 
   def index
@@ -20,6 +19,11 @@ class ApplicationController < ActionController::Base
     oauth_token = @oauth_client.auth_code.get_token(params[:code], :redirect_uri => REDIRECT_URL).token
     @client = Strava::Api::V3::Client.new(:access_token => oauth_token)
     @athlete = @client.retrieve_current_athlete
+    @is_valid_icon = false
+    if HTTParty.get(@athlete['profile']).code == 200
+      @is_valid_icon = true
+    end
+
     #Start from the beginning of the year till the day you login to the application
     strava_activities = []
     page = 1
