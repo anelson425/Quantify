@@ -43,8 +43,8 @@ class ApplicationController < ActionController::Base
 
     logger.debug("Calls: #{calls}")
 
-    strava_activities.uniq.sort_by! {|activity| activity['start_date_local']}
-
+    # All of the activites are already sorted latest to earliest so we just need to reverse the list.
+    strava_activities.reverse!
 
     @activities = []
     total_miles = 0
