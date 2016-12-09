@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
   before_action :initialize_oauth_client
 
   def index
-    redirect_to @oauth_client.auth_code.authorize_url(:redirect_uri => REDIRECT_URL)
-    # @activities = [Activity.new(date: '1234123434', distance_mi: '23435', time_min: '354642', total_distance_mi: '35452')]
+    # redirect_to @oauth_client.auth_code.authorize_url(:redirect_uri => REDIRECT_URL)
+    @activities = [Activity.new(date: '1234123434', distance_mi: '23435', time_min: '354642', total_distance_mi: '35452')]
     # RunningClubMailer.run_log_email.deliver
   end
 
