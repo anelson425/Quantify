@@ -29,7 +29,7 @@
 #modal1.modal
   .modal-content
     %h4 T-shirt Size
-    =form_tag(controller: :email , action: :send_email) do
+    =form_tag(controller: :email , action: :send_email, request_type: 'application/json') do
       .row
         .input-field.col3.s6g
           %label{:for => 'size', :class => 'active'} T-shirt Size:
