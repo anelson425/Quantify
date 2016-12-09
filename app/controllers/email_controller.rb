@@ -4,6 +4,6 @@ class EmailController < ApplicationController
 
   def send_email
     puts params
-    RunningClubMailer.run_log_email(params).deliver
+    RunningClubMailer.run_log_email(params[:size], params[:athlete], params[:activities]).deliver
   end
 end

@@ -37,5 +37,7 @@
         .input-field.col3.s6g
           %label{:for => 'size', :class => 'active'} T-shirt Size:
           %input{:type => 'text', :name => 'size', :placeholder => 'L'}
+          =hidden_field_tag 'athlete', @athlete
+          =hidden_field_tag 'activities', @activities
       .modal-footer
         =button_tag 'Send' , class: 'btn green' , type: :submit

@@ -5,6 +5,9 @@ class RunningClubMailer < ApplicationMailer
     @athlete = athlete
     @shirt_size = size
     @activities = activities
-    mail(to: athlete.email, subject: "#{athlete.firstname} #{athlete.lastname} - Tracking Card Submission")
+    puts size
+    puts athlete
+    puts activities
+    mail(to: 'venkatesh.sridharan@cerner.com', subject: "#{athlete['firstname']} #{athlete['lastname']} - Tracking Card Submission")
   end
 end
