@@ -8,7 +8,9 @@
       %th{"data-field" => "milestone"} Milestone Met
   %tbody
     - @activities.each do |activity|
-      %tr
+      - if activity.milestone
+        - divclass = 'tr-highlight'
+      %tr{class: divclass}
         %td= activity.date
         %td= activity.distance_mi
         %td= activity.time_min

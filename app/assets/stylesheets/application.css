@@ -22,3 +22,7 @@
   margin-right: 40px;
   margin-left: 40px;
 }
+
+.tr-highlight {
+  background-color: yellow;
+}
