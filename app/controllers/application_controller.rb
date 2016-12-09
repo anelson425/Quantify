@@ -43,6 +43,9 @@ class ApplicationController < ActionController::Base
 
     logger.debug("Calls: #{calls}")
 
+    strava_activities.uniq.sort_by! {|activity| activity['start_date_local']}
+
+
     @activities = []
     total_miles = 0
     strava_activities.each do |activity|
