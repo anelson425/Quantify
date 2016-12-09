@@ -5,8 +5,6 @@ class RunningClubMailer < ApplicationMailer
     @athlete = athlete
     @shirt_size = size
     @activities = Array.new
-    puts size
-    puts athlete
     activities.each do |a|
       b = JSON.load a
       @activities = @activities << b
