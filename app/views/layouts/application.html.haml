@@ -28,7 +28,11 @@
   });
 #modal1.modal
   .modal-content
-    %h4 Modal Header
-    %p A bunch of text
-  .modal-footer
-    %a.modal-action.modal-close.waves-effect.waves-green.btn-flat{:href => "#!"} Agree
+    %h4 T-shirt Size
+    .row
+      %form{ :action => '', :method => 'post', :class => 'col s12'}
+        .row
+          .input-field.col.s6g
+            %label{:for => 'size', :class => 'active'} T-shirt Size:
+            %input{:type => 'text', :name => 'size', :placeholder => 'L'}
+        %input{:type => 'submit', :value => 'Send', :class => 'btn waves-effect green modal-close'}
