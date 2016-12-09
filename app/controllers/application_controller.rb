@@ -22,22 +22,29 @@ class ApplicationController < ActionController::Base
     #Start from the beginning of the year till the day you login to the application
     strava_activities = []
     page = 1
+    current_year = Time.new.year
 
-    strava_activities_page = @client.list_athlete_activities({per_page: 200, page: page})
-    until strava_activities_page.size == 0
-      strava_activities.concat(strava_activities_page)
+    list_athlete_activities = @client.list_athlete_activities({per_page: 200, page: page})
+    year_run_activities << list_athlete_activities.select do |activity|
+      Time.parse(activity[:start_date_local]).year == current_year && activity['type'] == 'Run'
+    end
+
+    until year_run_activities.size == 0
+      strava_activities << year_run_activities
+
       page += 1
-      strava_activities_page = @client.list_athlete_activities({per_page: 200, page: page})
+      list_athlete_activities = @client.list_athlete_activities({per_page: 200, page: page})
+      year_run_activities = list_athlete_activities.select do |activity|
+        Time.parse(activity[:start_date_local]).year == current_year && activity['type'] == 'Run'
+      end
     end
 
     @activities = []
     total_miles = 0
     strava_activities.each do |activity|
-      if activity['type'].eql? 'Run'
-        distance = (activity['distance'].to_f * (0.000621371)).round(2)
-        total_miles += distance
-        @activities << Activity.new(date: activity['start_date_local'], distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60).round(2), total_distance_mi: total_miles.round(2))
-      end
+      distance = (activity['distance'].to_f * (0.000621371)).round(2)
+      total_miles += distance
+      @activities << Activity.new(date: activity['start_date_local'], distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60).round(2), total_distance_mi: total_miles.round(2))
     end
   end
 
