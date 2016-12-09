@@ -5,20 +5,20 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  REDIRECT_URL = "http://quantify.ddns.net/mileage".freeze
+  REDIRECT_URL = "http://localhost:3000/mileage".freeze
 
   before_action :initialize_oauth_client
 
   def index
-    # redirect_to @oauth_client.auth_code.authorize_url(:redirect_uri => REDIRECT_URL)
-    @activities = [Activity.new(date: '1234123434', distance_mi: '23435', time_min: '354642', total_distance_mi: '35452')]
-    # RunningClubMailer.run_log_email.deliver
+    redirect_to @oauth_client.auth_code.authorize_url(:redirect_uri => REDIRECT_URL)
+    # @activities = [Activity.new(date: '1234123434', distance_mi: '23435', time_min: '354642', total_distance_mi: '35452')]
   end
 
   def mileage
     logger.debug("in mileage")
     oauth_token = @oauth_client.auth_code.get_token(params[:code], :redirect_uri => REDIRECT_URL).token
     @client = Strava::Api::V3::Client.new(:access_token => oauth_token)
+    @athlete = @client.retrieve_current_athlete
     #Start from the beginning of the year till the day you login to the application
     strava_activities = []
     page = 1
