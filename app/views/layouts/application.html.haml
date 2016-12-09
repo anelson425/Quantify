@@ -29,10 +29,10 @@
 #modal1.modal
   .modal-content
     %h4 T-shirt Size
-    %form{ :action => '/email', :method => 'post', :class => 'col s12'}
+    =form_tag(controller: :email , action: :send_email) do
       .row
         .input-field.col3.s6g
           %label{:for => 'size', :class => 'active'} T-shirt Size:
           %input{:type => 'text', :name => 'size', :placeholder => 'L'}
       .modal-footer
-        %input{:type => 'submit', :value => 'Send', :class => 'btn green', :href => 'email', :method => "post"}
+        =button_tag 'Send' , class: 'btn green' , type: :submit
