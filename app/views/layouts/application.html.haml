@@ -19,8 +19,13 @@
                 %i.material-icons home
           %ul#nav-mobile.right.hide-on-med-and-down
             %li
-              %a.btn.green.padding-right{:href => "#modal1"} Email
+              %a.btn.green.padding-right.waves-effect{:href => "#modal1"} Email
     = yield
+:javascript
+    $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
 #modal1.modal
   .modal-content
     %h4 Modal Header
