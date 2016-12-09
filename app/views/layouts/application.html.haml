@@ -6,6 +6,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     %link{ :rel => "stylesheet", :href => "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css"}
     %link{ :rel => "stylesheet", :href => "https://fonts.googleapis.com/icon?family=Material+Icons" }
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"}
     = csrf_meta_tags
   %body.body-dark
     .navbar-fixed
@@ -18,10 +19,10 @@
           %ul#nav-mobile.right.hide-on-med-and-down
             %li
               %a.btn.green.padding-right{:href => "#modal1"} Email
-    #modal1.modal
-      .modal-content
-        %h4 Modal Header
-        %p A bunch of text
-      .modal-footer
-        %a.modal-action.modal-close.waves-effect.waves-green.btn-flat{:href => "#!"} Agree
     = yield
+#modal1.modal
+  .modal-content
+    %h4 Modal Header
+    %p A bunch of text
+  .modal-footer
+    %a.modal-action.modal-close.waves-effect.waves-green.btn-flat{:href => "#!"} Agree
