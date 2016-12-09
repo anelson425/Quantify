@@ -1,2 +1,9 @@
-This is a test
-= yield
+:plain
+  Name: #{athlete.firstname} #{athlete.lastname}
+  Shirt Size: #{shirt_size}
+  \
+  Date               Distance                Time                 Total Distance
+  =====================================================================================
+  - @activities.each do |activity|
+    #{activity.date}     #{activity.distance_mi}   #{activity.time_min}    #{activity.total_distance_mi}
+    = yield
