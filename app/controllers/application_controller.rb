@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  REDIRECT_URL = "http://localhost:3000/mileage".freeze
+  REDIRECT_URL = "http://quantify.ddns.net/mileage".freeze
 
   before_action :initialize_oauth_client
 
