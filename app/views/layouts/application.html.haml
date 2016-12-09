@@ -32,7 +32,8 @@
     .row
       %form{ :action => '', :method => 'post', :class => 'col s12'}
         .row
-          .input-field.col6.s6g
+          .input-field.col3.s6g
             %label{:for => 'size', :class => 'active'} T-shirt Size:
             %input{:type => 'text', :name => 'size', :placeholder => 'L'}
-        %input{:type => 'submit', :value => 'Send', :class => 'btn green waves-effect modal-close modal-footer', :href => 'email', :method => "post"}
+    .modal-footer
+      %a.btn.green.waves-effect.modal-close{:href => 'email', :method => "post"} Send
