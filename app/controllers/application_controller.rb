@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
       if activity['type'].eql? 'Run'
         distance = (activity['distance'].to_f * (0.000621371)).round(2)
         total_miles += distance
-        @activities << Activity.new(date: activity['start_date_local'], distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60).round(2), total_distance_mi: total_miles)
+        @activities << Activity.new(date: activity['start_date_local'], distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60).round(2), total_distance_mi: total_miles.round(2))
       end
     end
   end
