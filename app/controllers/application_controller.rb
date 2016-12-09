@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     year_run_activities = []
     list_athlete_activities = @client.list_athlete_activities({per_page: 200, page: page})
     year_run_activities << list_athlete_activities.select do |activity|
-      Time.parse(activity[:start_date_local]).year == current_year && activity['type'] == 'Run'
+      Time.parse(activity['start_date_local']).year == current_year && activity['type'] == 'Run'
     end
 
     until year_run_activities.size == 0
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       page += 1
       list_athlete_activities = @client.list_athlete_activities({per_page: 200, page: page})
       year_run_activities = list_athlete_activities.select do |activity|
-        Time.parse(activity[:start_date_local]).year == current_year && activity['type'] == 'Run'
+        Time.parse(activity['start_date_local']).year == current_year && activity['type'] == 'Run'
       end
     end
 
