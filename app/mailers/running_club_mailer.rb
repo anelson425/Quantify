@@ -9,6 +9,6 @@ class RunningClubMailer < ApplicationMailer
       b = JSON.load a
       @activities = @activities << b
     end
-    mail(to: 'ian.kottman@cerner.com', subject: "#{@athlete['firstname']} #{@athlete['lastname']} - Tracking Card Submission")
+    mail(to: 'andy.nelson@cerner.com', subject: "#{@athlete['firstname']} #{@athlete['lastname']} - Tracking Card Submission")
   end
 end
