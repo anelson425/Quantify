@@ -1,7 +1,7 @@
 class RunningClubMailer < ApplicationMailer
   default from: 'cerner.quantify@gmail.com'
 
-  def run_log_email(athlete, shirt_size, activities)
+  def run_log_email(params)
     @athlete = athlete
     @shirt_size = shirt_size
     @activities = activities
