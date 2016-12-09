@@ -20,6 +20,9 @@
           %ul#nav-mobile.right.hide-on-med-and-down
             %li
               %a.btn.green.padding-right.waves-effect{:href => "#modal1"} Email
+    .chip
+      %img{:alt => "Athlete", :src => "#{@athlete['profile']}"}/
+      #{@athlete['firstname']} #{@athlete['lastname']}
     = yield
 :javascript
     $(document).ready(function(){
