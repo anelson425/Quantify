@@ -1,5 +1,6 @@
 require 'oauth2'
 require 'httparty'
+require 'uri'
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
