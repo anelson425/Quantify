@@ -20,13 +20,13 @@
           %ul#nav-mobile.right.hide-on-med-and-down
             %li
               %a.btn.green.padding-right.waves-effect{:href => "#modal1"} Email
-    .chip
+    .chip.valign-wrapper
       - if @is_valid_icon
         %img{alt: "Athlete", style: "height:60px;width:60px", src: "#{@athlete['profile']}"}
-        #{@athlete['firstname']} #{@athlete['lastname']}
+          %h5 #{@athlete['firstname']} #{@athlete['lastname']}
       - else
-        %img{alt: "Athlete", style: "height:60px;width:60px", src: 'http://icons.iconarchive.com/icons/ph03nyx/super-mario/256/Paper-Mario-icon.png'}
-        #{@athlete['firstname']} #{@athlete['lastname']}
+        %img{alt: "Athlete", style: "height:60px;width:60px", src: 'https://upload.wikimedia.org/wikipedia/en/f/fa/Super_Mario_Strikers.jpg'}
+          %h5 #{@athlete['firstname']} #{@athlete['lastname']}
     = yield
 :javascript
     $(document).ready(function(){
