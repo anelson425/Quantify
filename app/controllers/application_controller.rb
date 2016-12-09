@@ -24,9 +24,8 @@ class ApplicationController < ActionController::Base
     page = 1
     current_year = Time.new.year
 
-    year_run_activities = []
     list_athlete_activities = @client.list_athlete_activities({per_page: 200, page: page})
-    year_run_activities << list_athlete_activities.select do |activity|
+    year_run_activities = list_athlete_activities.select do |activity|
       Time.parse(activity['start_date_local']).year == current_year && activity['type'] == 'Run'
     end
 
