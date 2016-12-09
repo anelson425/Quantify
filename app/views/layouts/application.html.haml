@@ -42,6 +42,8 @@
           %label{:for => 'size', :class => 'active'} T-shirt Size:
           %input{:type => 'text', :name => 'size', :placeholder => 'L'}
           =hidden_field_tag 'athlete', @athlete
-          =hidden_field_tag 'activities', @activities
+          // pass the activities as a list param
+          - @activities.each do |activity|
+            =hidden_field_tag 'activities[]', activity
       .modal-footer
         =button_tag 'Send' , class: 'btn green' , type: :submit

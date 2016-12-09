@@ -4,10 +4,13 @@ class RunningClubMailer < ApplicationMailer
   def run_log_email(size, athlete, activities)
     @athlete = athlete
     @shirt_size = size
-    @activities = activities
+    @activities = Array.new
     puts size
     puts athlete
-    puts activities
+    activities.each do |a|
+      b = JSON.load a
+      @activities = @activities << b
+    end
     mail(to: 'venkatesh.sridharan@cerner.com', subject: "#{athlete['firstname']} #{athlete['lastname']} - Tracking Card Submission")
   end
 end

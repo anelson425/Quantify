@@ -11,8 +11,8 @@ Shirt Size: %strong
   %tbody
     - @activities.each do |activity|
       %tr
-        %td= activity.date
-        %td= activity.distance_mi
-        %td= activity.time_min
-        %td= activity.total_distance_mi
+        %td= activity['@date']
+        %td= activity['@distance_mi']
+        %td= activity['@time_min']
+        %td= activity['@total_distance_mi']
     = yield

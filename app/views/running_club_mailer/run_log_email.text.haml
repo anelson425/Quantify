@@ -1,9 +1,9 @@
-Name: #{athlete.firstname} #{athlete.lastname}
-Shirt Size: #{shirt_size}
+Name: #{@athlete['firstname']} #{@athlete['lastname']}
+Shirt Size: #{@size}
 \
 Date               Distance                Time                 Total Distance
 =====================================================================================
 - @activities.each do |activity|
-  #{activity.date}     #{activity.distance_mi}   #{activity.time_min}    #{activity.total_distance_mi}
+  #{activity['@date']}     #{activity['@distance_mi']}   #{activity['@time_min']}    #{activity['@total_distance_mi']}
   \
 = yield
