@@ -21,7 +21,7 @@
             %li
               %a.btn.green.padding-right.waves-effect{:href => "#modal1"} Email
     .chip
-      %img{:alt => "Athlete", :src => "#{@athlete['profile']}"}/
+      %img{alt: "Athlete", style: "height:60px;width:60px", src: "#{@athlete['profile']}"}
       #{@athlete['firstname']} #{@athlete['lastname']}
     = yield
 :javascript
