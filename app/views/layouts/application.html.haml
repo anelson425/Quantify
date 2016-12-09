@@ -21,8 +21,12 @@
             %li
               %a.btn.green.padding-right.waves-effect{:href => "#modal1"} Email
     .chip
-      %img{alt: "Athlete", style: "height:60px;width:60px", src: "#{@athlete['profile']}"}
-      #{@athlete['firstname']} #{@athlete['lastname']}
+      - if @is_valid_icon
+        %img{alt: "Athlete", style: "height:60px;width:60px", src: "#{@athlete['profile']}"}
+        #{@athlete['firstname']} #{@athlete['lastname']}
+      - else
+        %img{alt: "Athlete", style: "height:60px;width:60px", src: 'https://upload.wikimedia.org/wikipedia/en/f/fa/Super_Mario_Strikers.jpg'}
+        #{@athlete['firstname']} #{@athlete['lastname']}
     = yield
 :javascript
     $(document).ready(function(){
