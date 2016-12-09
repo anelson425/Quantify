@@ -5,7 +5,7 @@
       %th{"data-field" => "name"} Distance
       %th{"data-field" => "price"} Time
   %tbody
-    = @activities.each |activity| do
+    = @activities.each do |activity|
       %tr
         %td activity.date
         %td activity.distance_mi
