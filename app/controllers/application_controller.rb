@@ -29,9 +29,11 @@ class ApplicationController < ActionController::Base
       Time.parse(activity['start_date_local']).year == current_year && activity['type'] == 'Run'
     end
 
+    logger.debug("Page size: #{page}")
     until year_run_activities.size == 0
-      strava_activities << year_run_activities
-
+      logger.debug("Page size: #{page}")
+      logger.debug("Activities size: #{year_run_activities.size}")
+      strava_activities.concat(year_run_activities)
       page += 1
       list_athlete_activities = @client.list_athlete_activities({per_page: 200, page: page})
       year_run_activities = list_athlete_activities.select do |activity|
@@ -42,7 +44,7 @@ class ApplicationController < ActionController::Base
     @activities = []
     total_miles = 0
     strava_activities.each do |activity|
-      puts activity
+      logger.debug("Activity: #{activity}")
       distance = (activity['distance'].to_f * (0.000621371)).round(2)
       total_miles += distance
       @activities << Activity.new(date: activity['start_date_local'], distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60).round(2), total_distance_mi: total_miles.round(2))
