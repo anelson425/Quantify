@@ -44,9 +44,10 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
-      port:                 25,
-      user_name:            'anthonyrosstrumpet5@gmail.com',
-      password:             'grampa',
+      port:                 465,
+      user_name:            ENV['QUANTIFY_EMAIL_USER_NAME'],
+      password:             ENV['QUANTIFY_EMAIL_PASSWORD'],
       authentication:       'plain',
-      enable_starttls_auto: true  }
+      enable_starttls_auto: true,
+      tls: true}
 end
