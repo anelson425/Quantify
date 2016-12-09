@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   REDIRECT_URL = "http://localhost:3000/mileage".freeze
 
+
   before_action :initialize_oauth_client
 
   def index
@@ -48,10 +49,16 @@ class ApplicationController < ActionController::Base
 
     @activities = []
     total_miles = 0
+    milestones = [126, 250, 493, 680, 854, 1136]
     strava_activities.each do |activity|
       distance = (activity['distance'].to_f * (0.000621371)).round(2)
       total_miles += distance
-      @activities << Activity.new(date: DateTime.iso8601(activity['start_date_local']).strftime("%F %T"), distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60), total_distance_mi: total_miles.round(2))
+      milestone = nil
+      if(milestones.length > 0 && total_miles >= milestones[0])
+        milestone = milestones[0]
+        milestones.shift
+      end
+      @activities << Activity.new(date: DateTime.iso8601(activity['start_date_local']).strftime("%F %T"), distance_mi: distance, time_min: ((activity['moving_time'].to_i)/60), total_distance_mi: total_miles.round(2), milestone: milestone)
     end
   end
 

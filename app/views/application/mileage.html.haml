@@ -3,8 +3,9 @@
     %tr
       %th{"data-field" => "id"} Date
       %th{"data-field" => "name"} Distance (miles)
-      %th{"data-field" => "price"} Time (minutes)
-      %th{"data-field" => "price"} Total Distance (miles)
+      %th{"data-field" => "time"} Time (minutes)
+      %th{"data-field" => "total_distance"} Total Distance (miles)
+      %th{"data-field" => "milestone"} Milestone Met
   %tbody
     - @activities.each do |activity|
       %tr
@@ -12,3 +13,6 @@
         %td= activity.distance_mi
         %td= activity.time_min
         %td= activity.total_distance_mi
+        %td
+          - if activity.milestone
+            = "#{activity.milestone} miles run!"
