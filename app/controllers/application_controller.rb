@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
     @client = Strava::Api::V3::Client.new(:access_token => oauth_token)
     @athlete = @client.retrieve_current_athlete
     @is_valid_icon = false
-    if HTTParty.get(@athlete['profile']).code == 200
+    uri = URI.parse(@athlete['profile'])
+    if uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
       @is_valid_icon = true
     end
 
