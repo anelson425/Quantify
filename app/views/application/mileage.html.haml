@@ -2,9 +2,9 @@
   %thead
     %tr
       %th{"data-field" => "id"} Date
-      %th{"data-field" => "name"} Distance
-      %th{"data-field" => "price"} Time
-      %th{"data-field" => "price"} Total Distance
+      %th{"data-field" => "name"} Distance (in miles)
+      %th{"data-field" => "price"} Time (in minutes)
+      %th{"data-field" => "price"} Total Distance (in miles)
   %tbody
     - @activities.each do |activity|
       %tr
