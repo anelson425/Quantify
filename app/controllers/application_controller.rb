@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
     @strava_activities_page = @client.list_athlete_activities({:after => Time.gm(Time.now.year, 'jan', '1').to_i})
     while true
       @strava_activities.concat(@strava_activities_page)
-      @strava_activities_page = @client.list_athlete_activities({:after => Time.parse(@strava_activities.last['start_date_local']).gmtime.to_i})
-      if @strava_activities_page.size == 1
+      @strava_activities_page = @client.list_athlete_activities({:after => (Time.parse(@strava_activities.last['start_date_local']).gmtime + (24*60*60)).to_i})
+      if @strava_activities_page.size == 0
         @strava_activities.concat(@strava_activities_page)
         break
       end
